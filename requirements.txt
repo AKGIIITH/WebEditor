@@ -1,9 +1,11 @@
 flask
 psycopg2
-PIL
-mysql
-os
-base64
+Pillow
+mysql-connector-python
+os-sys
+pybase64
 numpy
-io
 moviepy
+io
+tk
+
