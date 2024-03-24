@@ -1,6 +1,6 @@
 flask
 psycopg2
-tkinter
+python-tk
 PIL
 mysql
 os
