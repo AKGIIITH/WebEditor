@@ -5,6 +5,5 @@ mysql-connector-python
 os-sys
 pybase64
 numpy
-moviepy
-python3-tk
+tk
 
