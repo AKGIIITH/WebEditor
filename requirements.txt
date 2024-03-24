@@ -6,6 +6,5 @@ os-sys
 pybase64
 numpy
 moviepy
-io
-tk
+python3-tk
 
