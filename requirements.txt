@@ -1,8 +1,4 @@
 flask
-render_template
-request
-jsonify
-session
 psycopg2
 tkinter
 PIL
