@@ -1,4 +1,7 @@
+Flask
 flask
+flask-restful
+requests
 psycopg2
 Pillow
 mysql-connector-python
@@ -6,4 +9,5 @@ os-sys
 pybase64
 numpy
 tk
+
 
