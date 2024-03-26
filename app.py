@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, jsonify, session, Response
+from flask import Flask, render_template, request, jsonify, session
 import psycopg2
 import tkinter as tk
 from PIL import Image, ImageTk
+from psycopg2.extras import DictCursor
 
 
 
@@ -31,17 +32,13 @@ app.secret_key = 'your_secret_key_here'
 
 # Function to establish a connection to the MySQL database
 def get_db_connection():
-    return mysql.connector.connect(
-        host='localhost',
-        user='AKG',
-        password='Password10@',
-        database='users'
-    )
+    connectstr=os.environ.get('DATABASE_URL')
+    return psycopg2.connect(connectstr)
 
 # Function to retrieve user data from the database
 def get_users():
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor(cursor_factory=DictCursor)
     cursor.execute('SELECT * FROM users')
     users = cursor.fetchall()
     conn.close()
@@ -50,7 +47,7 @@ def get_users():
 # Function to check user credentials
 def check_user_credentials(username, password):
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor(cursor_factory=DictCursor)
     cursor.execute('SELECT * FROM users WHERE username = %s AND password = %s', (username, password))
     user = cursor.fetchone()
     conn.close()
@@ -144,7 +141,7 @@ def signup():
     cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)', (username, email, password))
     conn.commit()
     
-    cursor=conn.cursor(dictionary=True) #############################################################################################Change Made to make it working
+    cursor=conn.cursor(cursor_factory=DictCursor) #############################################################################################Change Made to make it working
     # Retrieve the inserted user id
     cursor.execute('SELECT id FROM users WHERE username = %s', (username,))
     user_id = cursor.fetchone()['id']
