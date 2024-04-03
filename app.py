@@ -82,16 +82,20 @@ def login():
 
     # Check user credentials
     user = check_user_credentials(username, password)
-    if user:
+    if not user:
+        if username == "admin" and password == "admin":
+            return jsonify({"success": True, "redirectTo": "admin"})
+        else:
+            return jsonify({"success": False, "message": "Invalid username or password"})
         # Store user id in session
         session['user_id'] = user['id']
         session['username'] = username
         return jsonify({"success": True, "redirectTo": "index"})  # Redirect to index.html on successful login
     else:
-        if username == "admin" and password == "admin":
-            return jsonify({"success": True, "redirectTo": "admin"})
-        else:
-            return jsonify({"success": False, "message": "Invalid username or password"})
+        # Store user id in session
+        session['user_id'] = user['id']
+        session['username'] = username
+        return jsonify({"success": True, "redirectTo": "index"})  # Redirect to index.html on successful login
 
 @app.route('/admin')
 def admin():
