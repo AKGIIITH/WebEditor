@@ -28,11 +28,11 @@ final_images = []
 # new changes end here/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
+app.secret_key = 'rohanisadickhead'
 
 # Function to establish a connection to the MySQL database
 def get_db_connection():
-    connectstr=os.environ.get('DATABASE_URL')
+    connectstr=os.environ.get("postgresql://akg:swinKr6SFtnvsN_tDOSbsw@webeditor-9094.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/users?sslmode=verify-full")
     return psycopg2.connect(connectstr)
 
 # Function to retrieve user data from the database
